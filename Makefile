@@ -1,7 +1,7 @@
 CC=gcc
 
 main.o: main.c
-	$(CC) -c main.c
+	$(CC) main.c -o main
 
 run:
 	./main
