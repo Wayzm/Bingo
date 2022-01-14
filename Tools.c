@@ -71,12 +71,13 @@ void play (int *BingoTable, int *Rnumrolled)
   int j=0;
   for(;;)
   {
-    rnum=rand()%100 +1;
+    getchar();
+    rnum=rand()%100+1;
     for(int k=0; k<j+1;k++)
     {
       if(rnum==Rnumrolled[k])
       {
-        rnum=rand()%99+1;
+        rnum=rand()%100+1;
         continue;
       }
       else
@@ -89,7 +90,7 @@ void play (int *BingoTable, int *Rnumrolled)
     printf("You rolled a %d !\n",rnum);
     printf("Let's see...\n");
     PrintMatrice(BingoTable);
-    for(int i=0;i<20;i+=5)
+    for(int i=0;i<4;i++)
     {
       for(int j=0;j<5;j++)
       {
@@ -99,12 +100,17 @@ void play (int *BingoTable, int *Rnumrolled)
           printf("Nice ! You gained a point !\n");
           break;
         }
+        else
+        {
+          continue;
+        }
       }
     }
     if(check==1)
     {
       points+=1;
       printf("Here's your total number of points : %d\n",points );
+      check = 0;
     }
     else
     {

@@ -19,7 +19,7 @@ int main ()
 {
   BingoTable=(int*)malloc(sizeof(int)*4*5);
   CheckNumber=(int*)calloc(5,sizeof(int));
-  Rnumrolled=(int*)malloc(sizeof(int)*100);
+  Rnumrolled=(int*)calloc(100,sizeof(int));
 
   Header();
 
