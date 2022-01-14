@@ -63,6 +63,8 @@ void PrintMatrice(int *BingoTable)
 void play (int *BingoTable, int *Rnumrolled)
 {
   int rnum;
+  int points=0;
+  int check;
 
   printf("Time to play ! \n");
   printf("You will need to press ENTER to generate a new random number ! \n");
@@ -85,6 +87,29 @@ void play (int *BingoTable, int *Rnumrolled)
       }
     }
     printf("You rolled a %d !\n",rnum);
+    printf("Let's see...\n");
+    PrintMatrice(BingoTable);
+    for(int i=0;i<20;i+=5)
+    {
+      for(int j=0;j<5;j++)
+      {
+        if(rnum==BingoTable[5*i+j])
+        {
+          check=1;
+          printf("Nice ! You gained a point !\n");
+          break;
+        }
+      }
+    }
+    if(check==1)
+    {
+      points+=1;
+      printf("Here's your total number of points : %d\n",points );
+    }
+    else
+    {
+      printf("Sucks to suck, better luck next time :D !\n");
+    }
 
   }
 }
