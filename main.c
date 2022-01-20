@@ -17,6 +17,7 @@ int *CheckNumber;
 int main ()
 
 {
+  int counter = 1;
   BingoTable=(int*)malloc(sizeof(int)*4*5);
   CheckNumber=(int*)calloc(5,sizeof(int));
   Rnumrolled=(int*)calloc(100,sizeof(int));
@@ -31,7 +32,7 @@ int main ()
 
   PrintMatrice(BingoTable);
 
-  play(BingoTable,Rnumrolled);
+  play(BingoTable,Rnumrolled,&counter);
 
   free(BingoTable);
   free(CheckNumber);

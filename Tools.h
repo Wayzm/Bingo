@@ -9,7 +9,7 @@ void CheckMatrice(int *BingoTable, int *CheckNumber);
 
 void Header();
 
-void play (int *BingoTable, int *Rnumrolled);
+void play (int *BingoTable, int *Rnumrolled, int *counter);
 
 void PrintMatrice (int *BingoTable);
 

@@ -60,7 +60,7 @@ void PrintMatrice(int *BingoTable)
 }
 
 
-void play (int *BingoTable, int *Rnumrolled)
+void play (int *BingoTable, int *Rnumrolled, int *counter)
 {
   int rnum;
   int points=0;
@@ -73,7 +73,7 @@ void play (int *BingoTable, int *Rnumrolled)
   {
     getchar();
     rnum=rand()%100+1;
-    for(int k=0; k<j+1;k++)
+    for(int k=0; k<(*counter);k++)
     {
       if(rnum==Rnumrolled[k])
       {
@@ -83,7 +83,7 @@ void play (int *BingoTable, int *Rnumrolled)
       else
       {
         Rnumrolled[k]=rnum;
-        j=j+1;
+        counter+=1;
         break;
       }
     }
