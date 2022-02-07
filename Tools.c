@@ -171,7 +171,7 @@ void BingoSheet(int *BingoTable,int *CheckNumber)
     int a,b,c,d,e;
 
     printf("Let's make your Bingo sheet now !\n");
-    int ll = i%5+1;
+    int ll = 1;
     printf("Input 5 differents numbers each time for each line ! Line number : %d \n (NO 0 REMEMBER!) \n", ll);
     scanf("%d %d %d %d %d", &a,&b,&c,&d,&e);
     printf("\n");
@@ -188,6 +188,7 @@ void BingoSheet(int *BingoTable,int *CheckNumber)
     CheckNumber[2]=c;
     CheckNumber[3]=d;
     CheckNumber[4]=e;
+    ll += 1;
 
   }
 }
