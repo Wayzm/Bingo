@@ -43,7 +43,6 @@ void PrintMatrice(int *BingoTable)
   printf("-----------------------------------------------------\n");
   printf("\n");
   printf("Here's your Bingo Sheet : \n");
-  #pragma omp parallel
   {
     for(unsigned int i=0; i<4;i++)
     {
@@ -60,11 +59,12 @@ void PrintMatrice(int *BingoTable)
 }
 
 
-void play (int *BingoTable, int *Rnumrolled, int *counter)
+void play (int *BingoTable, int *Rnumrolled)
 {
   int rnum;
   int points=0;
   int check;
+  int counter = 1;
 
   printf("Time to play ! \n");
   printf("You will need to press ENTER to generate a new random number ! \n");
@@ -73,20 +73,22 @@ void play (int *BingoTable, int *Rnumrolled, int *counter)
   {
     getchar();
     rnum=rand()%100+1;
-    for(int k=0; k<(*counter);k++)
+    for(int k=0; k < counter;k++)
     {
       if(rnum==Rnumrolled[k])
       {
         rnum=rand()%100+1;
+        k = -1;
         continue;
       }
       else
-      {
-        Rnumrolled[k]=rnum;
-        counter+=1;
-        break;
-      }
+        continue;
     }
+
+    Rnumrolled[counter-1]=rnum;
+
+    counter += 1;
+
     printf("You rolled a %d !\n",rnum);
     printf("Let's see...\n");
     PrintMatrice(BingoTable);
@@ -138,6 +140,30 @@ void seeding()
   }
 }
 
+void errors_input (int* CheckNumber, int a, int b, int c, int d, int e)
+{
+  if(a>100 || a==0 ||b>100 || b==0 ||c>100 || c==0 ||d>100 || d==0 ||e>100 || e==0)
+  {
+    printf("Follow/Read the rules next time :D ! \n");
+    exit(EXIT_FAILURE);
+  }
+
+  if(a==b || a==c || b==c || b==d || c==d || d==a || e==a || b==e || e==d || c==e)
+  {
+    printf("Follow/Read the rules next time :D ! \n");
+    exit(EXIT_FAILURE);
+  }
+
+  for(int j=0;j<5;j++)
+  {
+    if(a==CheckNumber[j] || b == CheckNumber[j] || c == CheckNumber[j] || d == CheckNumber [j] || e == CheckNumber[j])
+    {
+      printf("You didn't even put some effort in your cheating... \n");
+      exit(EXIT_FAILURE);
+    }
+  }
+}
+
 void BingoSheet(int *BingoTable,int *CheckNumber)
 {
   for(unsigned int i=0; i<20;i+=5)
@@ -145,24 +171,12 @@ void BingoSheet(int *BingoTable,int *CheckNumber)
     int a,b,c,d,e;
 
     printf("Let's make your Bingo sheet now !\n");
-    printf("Input 5 different numbers each time for each line ! Line number : %d \n (NO 0 REMEMBER!) \n", i%5+1);
+    int ll = i%5+1;
+    printf("Input 5 differents numbers each time for each line ! Line number : %d \n (NO 0 REMEMBER!) \n", ll);
     scanf("%d %d %d %d %d", &a,&b,&c,&d,&e);
     printf("\n");
 
-      if(a>100 || a==0 ||b>100 || b==0 ||c>100 || c==0 ||d>100 || d==0 ||e>100 || e==0)
-      {
-        printf("Follow/Read the rules next time :D ! \n");
-        exit(EXIT_FAILURE);
-      }
-
-      for(int j=0;j<5;j++)
-      {
-        if(a==CheckNumber[j] || b == CheckNumber[j] || c == CheckNumber[j] || d == CheckNumber [j] || e == CheckNumber[j])
-        {
-          printf("You didn't even put some effort in your cheating... \n");
-          exit(EXIT_FAILURE);
-        }
-      }
+    errors_input(CheckNumber,a,b,c,d,e);
 
     BingoTable[i+0]=a;
     BingoTable[i+1]=b;

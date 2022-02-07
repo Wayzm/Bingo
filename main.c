@@ -32,7 +32,7 @@ int main ()
 
   PrintMatrice(BingoTable);
 
-  play(BingoTable,Rnumrolled,&counter);
+  play(BingoTable,Rnumrolled);
 
   free(BingoTable);
   free(CheckNumber);
