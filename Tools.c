@@ -74,7 +74,7 @@ void play (int *BingoTable, int *Rnumrolled)
     if (points == 20 )
     {
       printf("You win !");
-      exit(EXIT_FAILURE);
+      break;
     }
 
     getchar();
