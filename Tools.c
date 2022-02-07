@@ -71,6 +71,12 @@ void play (int *BingoTable, int *Rnumrolled)
   int j=0;
   for(;;)
   {
+    if (points == 20 )
+    {
+      printf("You win !");
+      exit(EXIT_FAILURE);
+    }
+
     getchar();
     rnum=rand()%100+1;
     for(int k=0; k < counter;k++)
