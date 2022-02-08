@@ -69,14 +69,8 @@ void play (int *BingoTable, int *Rnumrolled)
   printf("Time to play ! \n");
   printf("You will need to press ENTER to generate a new random number ! \n");
   int j=0;
-  for(;;)
+  while(points<20)
   {
-    if (points == 20 )
-    {
-      printf("You win \n!");
-      break;
-    }
-
     getchar();
     rnum=rand()%100+1;
     for(int k=0; k < counter;k++)
